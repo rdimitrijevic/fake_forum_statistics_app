@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block heading %}<h2>Post table</h2>{% endblock %}
+{% block form %}
+    <form action="{% url 'posts' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn-primary">Search</button>
+    </form>
+{% endblock %}
+{% block table %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Content</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in posts %}
+      <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.content }}</td>
+        <td>{{ post.topic }}</td>
+        <td>{{ post.date }}</td>
+      </tr>
+  {% endfor %}
+  </tbody>
+</table>{% endblock %}

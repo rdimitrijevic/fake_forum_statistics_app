@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block heading %}<h2>User table</h2>{% endblock %}
+{% block form %}
+    <form action="{% url 'users' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn-primary">Search</button>
+    </form>
+{% endblock %}
+{% block table %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.gender }}</td>
+      </tr>
+  {% endfor %}
+  </tbody>
+</table>{% endblock %}
